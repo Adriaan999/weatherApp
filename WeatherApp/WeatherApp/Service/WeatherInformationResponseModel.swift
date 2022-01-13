@@ -15,8 +15,20 @@ struct WeatherInformationResponseModel: Decodable {
 
 struct Main: Decodable {
     let temp: Double
+    let tempMin: Double
+    let tempMax: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case temp
+        case tempMin = "temp_min"
+        case tempMax = "temp_max"
+    }
 }
 
 struct Weather: Decodable {
-    let id: Int
+    let condition: String
+    
+    enum CodingKeys: String, CodingKey {
+        case condition = "main"
+    }
 }

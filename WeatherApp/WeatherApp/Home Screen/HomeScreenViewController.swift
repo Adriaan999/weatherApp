@@ -6,19 +6,31 @@
 //
 
 import UIKit
+import CoreLocation
 
 class HomeScreenViewController: UIViewController {
  
+    @IBOutlet private var currentTempLabel: UILabel!
     @IBOutlet private var weatherTableView: UITableView!
     
-    private lazy var viewModel = HomeScreenViewModel(interactor: WeatherInformationInteractor())
+    let locationManager = CLLocationManager()
+    
+    private lazy var viewModel = HomeScreenViewModel(interactor: WeatherInformationInteractor(),
+                                                     delegate: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupTableViewCell()
+       
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
+        
         weatherTableView.delegate = self
         weatherTableView.dataSource = self
-        viewModel.fetchWeatherData()
+        
+        setupTableViewCell()
+       // viewModel.fetchWeatherData()
     }
     
     private func setupTableViewCell() {
@@ -48,5 +60,30 @@ extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
+    }
+}
+
+
+extension HomeScreenViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            locationManager.stopUpdatingLocation()
+            let lat = location.coordinate.latitude
+            let lon = location.coordinate.longitude
+            viewModel.fetchWeatherData(latitude: lat, longitude: lon)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+}
+
+extension HomeScreenViewController: HomeScreenViewModelDelegate {
+    
+    func didUpateWeather() {
+        DispatchQueue.main.async {
+            self.currentTempLabel.text = self.viewModel.currentTemp
+        }
     }
 }

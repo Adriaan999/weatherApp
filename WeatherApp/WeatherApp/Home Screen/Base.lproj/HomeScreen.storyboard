@@ -80,6 +80,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currentTempLabel" destination="MX7-Xp-AmM" id="XDb-Zm-Tug"/>
                         <outlet property="weatherTableView" destination="Vgr-T6-zMa" id="7qz-ZB-WNa"/>
                     </connections>
                 </viewController>
