@@ -19,6 +19,9 @@
 		63CA623D279027B20039000D /* WeatherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63CA623C279027B20039000D /* WeatherTableViewCell.xib */; };
 		63CA62452790284E0039000D /* WeatherTableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA62442790284E0039000D /* WeatherTableViewHeaderCell.swift */; };
 		63CA624E2790286E0039000D /* WeatherTableViewHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63CA624D2790286E0039000D /* WeatherTableViewHeaderCell.xib */; };
+		63CA625C279034580039000D /* Data+Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA625B279034580039000D /* Data+Decoding.swift */; };
+		63CA6265279034B80039000D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA6264279034B80039000D /* NetworkManager.swift */; };
+		63CA626D279034CD0039000D /* NetworkManagerBoundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA626C279034CC0039000D /* NetworkManagerBoundary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		63CA623C279027B20039000D /* WeatherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherTableViewCell.xib; sourceTree = "<group>"; };
 		63CA62442790284E0039000D /* WeatherTableViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewHeaderCell.swift; sourceTree = "<group>"; };
 		63CA624D2790286E0039000D /* WeatherTableViewHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherTableViewHeaderCell.xib; sourceTree = "<group>"; };
+		63CA625B279034580039000D /* Data+Decoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Decoding.swift"; sourceTree = "<group>"; };
+		63CA6264279034B80039000D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		63CA626C279034CC0039000D /* NetworkManagerBoundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerBoundary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,8 @@
 		63CA61D5279014C70039000D /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				63CA6263279034A40039000D /* Network Manager */,
+				63CA625A279034450039000D /* Extensions */,
 				63CA620C27901A720039000D /* Home Screen */,
 				63CA61D6279014C70039000D /* AppDelegate.swift */,
 				63CA61D8279014C70039000D /* SceneDelegate.swift */,
@@ -170,6 +178,23 @@
 				63CA624D2790286E0039000D /* WeatherTableViewHeaderCell.xib */,
 			);
 			path = "Header Cells";
+			sourceTree = "<group>";
+		};
+		63CA625A279034450039000D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				63CA625B279034580039000D /* Data+Decoding.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		63CA6263279034A40039000D /* Network Manager */ = {
+			isa = PBXGroup;
+			children = (
+				63CA6264279034B80039000D /* NetworkManager.swift */,
+				63CA626C279034CC0039000D /* NetworkManagerBoundary.swift */,
+			);
+			path = "Network Manager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,11 +328,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63CA626D279034CD0039000D /* NetworkManagerBoundary.swift in Sources */,
 				63CA62352790240E0039000D /* WeatherTableViewCell.swift in Sources */,
 				63CA61E1279014C70039000D /* WeatherApp.xcdatamodeld in Sources */,
 				63CA62452790284E0039000D /* WeatherTableViewHeaderCell.swift in Sources */,
 				63CA622827901BED0039000D /* HomeScreenViewController.swift in Sources */,
+				63CA6265279034B80039000D /* NetworkManager.swift in Sources */,
 				63CA61D7279014C70039000D /* AppDelegate.swift in Sources */,
+				63CA625C279034580039000D /* Data+Decoding.swift in Sources */,
 				63CA61D9279014C70039000D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
