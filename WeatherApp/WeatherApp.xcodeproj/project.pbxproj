@@ -15,6 +15,7 @@
 		63CA61F1279014C80039000D /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA61F0279014C80039000D /* WeatherAppTests.swift */; };
 		63CA61FC279014C80039000D /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA61FB279014C80039000D /* WeatherAppUITests.swift */; };
 		63CA622827901BED0039000D /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA622727901BED0039000D /* HomeScreenViewController.swift */; };
+		63CA62352790240E0039000D /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA62342790240E0039000D /* WeatherTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		63CA61FB279014C80039000D /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		63CA61FD279014C80039000D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63CA622727901BED0039000D /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		63CA62342790240E0039000D /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,10 +132,19 @@
 		63CA620C27901A720039000D /* Home Screen */ = {
 			isa = PBXGroup;
 			children = (
+				63CA6233279023F20039000D /* Weather Cell */,
 				63CA61DC279014C70039000D /* HomeScreen.storyboard */,
 				63CA622727901BED0039000D /* HomeScreenViewController.swift */,
 			);
 			path = "Home Screen";
+			sourceTree = "<group>";
+		};
+		63CA6233279023F20039000D /* Weather Cell */ = {
+			isa = PBXGroup;
+			children = (
+				63CA62342790240E0039000D /* WeatherTableViewCell.swift */,
+			);
+			path = "Weather Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63CA62352790240E0039000D /* WeatherTableViewCell.swift in Sources */,
 				63CA61E1279014C70039000D /* WeatherApp.xcdatamodeld in Sources */,
 				63CA622827901BED0039000D /* HomeScreenViewController.swift in Sources */,
 				63CA61D7279014C70039000D /* AppDelegate.swift in Sources */,
