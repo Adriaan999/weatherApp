@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sea_sunny" translatesAutoresizingMaskIntoConstraints="NO" id="2gh-Yx-JX8">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forest_sunny" translatesAutoresizingMaskIntoConstraints="NO" id="2gh-Yx-JX8">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="350" id="cdH-d2-ROM"/>
@@ -25,44 +25,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vgr-T6-zMa">
                                 <rect key="frame" x="0.0" y="350" width="414" height="512"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="b8b-cb-UWK" customClass="WeatherTableViewCell" customModule="WeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="20.666666030883789"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b8b-cb-UWK" id="EPK-0t-dVU">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="20.666666030883789"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="7vA-py-GHz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="20.666666666666668"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dlt-UQ-gJA">
-                                                            <rect key="frame" x="0.0" y="0.0" width="138" height="20.666666666666668"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Clear" translatesAutoresizingMaskIntoConstraints="NO" id="Pcj-VO-SHy">
-                                                            <rect key="frame" x="138" y="0.0" width="138" height="20.666666666666668"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sja-2Y-sRv">
-                                                            <rect key="frame" x="276" y="0.0" width="138" height="20.666666666666668"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="7vA-py-GHz" firstAttribute="top" secondItem="EPK-0t-dVU" secondAttribute="top" id="KVo-Zi-hwI"/>
-                                                <constraint firstItem="7vA-py-GHz" firstAttribute="leading" secondItem="EPK-0t-dVU" secondAttribute="leading" id="LXz-Ap-igI"/>
-                                                <constraint firstAttribute="trailing" secondItem="7vA-py-GHz" secondAttribute="trailing" id="p0y-Bk-1tH"/>
-                                                <constraint firstAttribute="bottom" secondItem="7vA-py-GHz" secondAttribute="bottom" id="tC2-on-aSe"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HWU-e6-D5l">
                                 <rect key="frame" x="165" y="113" width="84" height="101.66666666666669"/>
@@ -117,6 +79,9 @@
                             <constraint firstAttribute="trailing" secondItem="2gh-Yx-JX8" secondAttribute="trailing" id="ysG-8Y-8oy"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="weatherTableView" destination="Vgr-T6-zMa" id="7qz-ZB-WNa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,8 +89,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Clear" width="13" height="13"/>
-        <image name="sea_sunny" width="360" height="320"/>
+        <image name="forest_sunny" width="360" height="321"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
