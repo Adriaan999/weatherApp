@@ -20,13 +20,13 @@ class WeatherInformationInteractor: WeatherInformationBoundary {
         let url = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
 
         networkManager.performRequest(url: url, successBlock: { (data) in
-            guard let currentMovieList: WeatherInformationResponseModel = try? data.decoded() else {
+            guard let weatherData: WeatherInformationResponseModel = try? data.decoded() else {
                 let errorDescription = "A localized description of an error"
                 let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorDescription])
                 failure(error)
                 return
             }
-            success(currentMovieList)
+            success(weatherData)
         }, failureBlock: { (error) in
             failure(error)
             return
@@ -36,6 +36,20 @@ class WeatherInformationInteractor: WeatherInformationBoundary {
     func fetchWeather(cityName: String,
                       success: @escaping FetchCurrentWeatherSuccess,
                       failure: @escaping FetchWeatherDataFailure) {
+        let url = "\(weatherURL)&q=\(cityName)"
+
+        networkManager.performRequest(url: url, successBlock: { (data) in
+            guard let weatherData: WeatherInformationResponseModel = try? data.decoded() else {
+                let errorDescription = "A localized description of an error"
+                let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorDescription])
+                failure(error)
+                return
+            }
+            success(weatherData)
+        }, failureBlock: { (error) in
+            failure(error)
+            return
+        })
         
     }
     

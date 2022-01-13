@@ -11,11 +11,14 @@ class HomeScreenViewController: UIViewController {
  
     @IBOutlet private var weatherTableView: UITableView!
     
+    private lazy var viewModel = HomeScreenViewModel(interactor: WeatherInformationInteractor())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableViewCell()
         weatherTableView.delegate = self
         weatherTableView.dataSource = self
+        viewModel.fetchWeatherData()
     }
     
     private func setupTableViewCell() {
