@@ -9,7 +9,7 @@ import UIKit
 
 class HomeScreenViewController: UIViewController {
  
-    @IBOutlet public var weatherTableView: UITableView!
+    @IBOutlet private var weatherTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

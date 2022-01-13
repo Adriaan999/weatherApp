@@ -20,13 +20,13 @@
                         <rect key="frame" x="200.5" y="15.5" width="13" height="13"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbE-sB-a5h">
-                        <rect key="frame" x="386" y="0.0" width="28" height="44"/>
+                        <rect key="frame" x="376" y="0.0" width="28" height="44"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAN-eX-iUa">
-                        <rect key="frame" x="0.0" y="0.0" width="61" height="44"/>
+                        <rect key="frame" x="10" y="0.0" width="61" height="44"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -36,8 +36,8 @@
                 <constraints>
                     <constraint firstItem="iAN-eX-iUa" firstAttribute="top" secondItem="c9E-K0-eka" secondAttribute="top" id="2h1-s1-WFp"/>
                     <constraint firstAttribute="bottom" secondItem="iAN-eX-iUa" secondAttribute="bottom" id="DEa-Ls-w6k"/>
-                    <constraint firstItem="iAN-eX-iUa" firstAttribute="leading" secondItem="c9E-K0-eka" secondAttribute="leading" id="Ens-wQ-N1Y"/>
-                    <constraint firstAttribute="trailing" secondItem="EbE-sB-a5h" secondAttribute="trailing" id="Fcs-Bz-REw"/>
+                    <constraint firstItem="iAN-eX-iUa" firstAttribute="leading" secondItem="c9E-K0-eka" secondAttribute="leading" constant="10" id="Ens-wQ-N1Y"/>
+                    <constraint firstAttribute="trailing" secondItem="EbE-sB-a5h" secondAttribute="trailing" constant="10" id="Fcs-Bz-REw"/>
                     <constraint firstItem="Pva-iw-RGg" firstAttribute="centerX" secondItem="c9E-K0-eka" secondAttribute="centerX" id="ar0-MK-qK3"/>
                     <constraint firstAttribute="bottom" secondItem="EbE-sB-a5h" secondAttribute="bottom" id="eZ2-9P-Abn"/>
                     <constraint firstItem="EbE-sB-a5h" firstAttribute="top" secondItem="c9E-K0-eka" secondAttribute="top" id="thM-97-OXb"/>
@@ -46,6 +46,11 @@
                     <constraint firstItem="Pva-iw-RGg" firstAttribute="centerY" secondItem="c9E-K0-eka" secondAttribute="centerY" id="zOL-rJ-ZG5"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="conditionImageView" destination="Pva-iw-RGg" id="MOs-ds-taa"/>
+                <outlet property="dayOfTheWeekLabel" destination="iAN-eX-iUa" id="QVK-o7-jxJ"/>
+                <outlet property="temperatureLabel" destination="EbE-sB-a5h" id="g2q-j0-Mqq"/>
+            </connections>
             <point key="canvasLocation" x="-113.04347826086958" y="-206.25"/>
         </tableViewCell>
     </objects>
