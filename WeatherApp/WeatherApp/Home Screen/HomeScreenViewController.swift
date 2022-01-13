@@ -11,6 +11,9 @@ import CoreLocation
 class HomeScreenViewController: UIViewController {
  
     @IBOutlet private var currentTempLabel: UILabel!
+    @IBOutlet private var cityNameLabel: UILabel!
+    @IBOutlet private var conditionsLabel: UILabel!
+    @IBOutlet private var backGroundImage: UIImageView!
     @IBOutlet private var weatherTableView: UITableView!
     
     let locationManager = CLLocationManager()
@@ -30,7 +33,6 @@ class HomeScreenViewController: UIViewController {
         weatherTableView.dataSource = self
         
         setupTableViewCell()
-       // viewModel.fetchWeatherData()
     }
     
     private func setupTableViewCell() {
@@ -50,11 +52,13 @@ extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherTableViewCell", for: indexPath) as! WeatherTableViewCell
+        cell.backgroundColor = UIColor(named: "Cloudy")
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "WeatherTableViewHeaderCell") as! WeatherTableViewHeaderCell
+        headerCell.backgroundColor = UIColor(named: "Cloudy")
         return headerCell
     }
     
@@ -84,6 +88,10 @@ extension HomeScreenViewController: HomeScreenViewModelDelegate {
     func didUpateWeather() {
         DispatchQueue.main.async {
             self.currentTempLabel.text = self.viewModel.currentTemp
+            self.cityNameLabel.text = self.viewModel.currentCity
+            self.conditionsLabel.text = self.viewModel.currentConditions
+            self.backGroundImage.image = UIImage(named: self.viewModel.backgroundImage)
+            self.weatherTableView.backgroundColor = UIColor(named: "Cloudy")
         }
     }
 }

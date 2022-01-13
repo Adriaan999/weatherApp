@@ -27,13 +27,34 @@ class HomeScreenViewModel {
         return String(format: "%.0f", weatherData?.main.temp ?? 0.0)
     }
     
+    var currentCity: String {
+        return weatherData?.name ?? ""
+    }
+    
+    var currentConditions: String {
+        return (weatherData?.weather[0].condition ?? "").uppercased()
+    }
+    
+    var backgroundImage: String {
+        switch currentConditions {
+        case "CLOUDS", "MIST":
+            return "forest_cloudy"
+        case "CLEAR":
+            return "forest_sunny"
+        case "RAIN":
+            return "forest_rainy"
+        default:
+            return "forest_sunny"
+        }
+    }
+    
     func fetchWeatherData() {
         interactor.fetchWeather(cityName: "Cape Town") { (response) in
             self.weatherData = response
         } failure: { (error) in
             print(error.localizedDescription)
         }
-
+        
     }
     
     func fetchWeatherData(latitude: Double, longitude: Double) {
@@ -43,6 +64,6 @@ class HomeScreenViewModel {
         } failure: { (error) in
             print(error.localizedDescription)
         }
-
+        
     }
 }

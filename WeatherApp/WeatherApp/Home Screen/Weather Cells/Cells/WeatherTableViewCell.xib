@@ -32,7 +32,6 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" name="Sunny"/>
                 <constraints>
                     <constraint firstItem="iAN-eX-iUa" firstAttribute="top" secondItem="c9E-K0-eka" secondAttribute="top" id="2h1-s1-WFp"/>
                     <constraint firstAttribute="bottom" secondItem="iAN-eX-iUa" secondAttribute="bottom" id="DEa-Ls-w6k"/>
@@ -46,6 +45,7 @@
                     <constraint firstItem="Pva-iw-RGg" firstAttribute="centerY" secondItem="c9E-K0-eka" secondAttribute="centerY" id="zOL-rJ-ZG5"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" name="Sunny"/>
             <connections>
                 <outlet property="conditionImageView" destination="Pva-iw-RGg" id="MOs-ds-taa"/>
                 <outlet property="dayOfTheWeekLabel" destination="iAN-eX-iUa" id="QVK-o7-jxJ"/>
