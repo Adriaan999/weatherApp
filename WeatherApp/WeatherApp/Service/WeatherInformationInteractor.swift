@@ -36,6 +36,7 @@ class WeatherInformationInteractor: WeatherInformationBoundary {
     func fetchWeather(cityName: String,
                       success: @escaping FetchCurrentWeatherSuccess,
                       failure: @escaping FetchWeatherDataFailure) {
+        
         let url = "\(weatherURL)&q=\(cityName)"
 
         networkManager.performRequest(url: url, successBlock: { (data) in

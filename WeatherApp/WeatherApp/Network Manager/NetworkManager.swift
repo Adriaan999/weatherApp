@@ -15,7 +15,7 @@ class NetworkManager: NetworkManagerBoundary {
     func performRequest(url: String,
                         successBlock: @escaping PerformRequestSuccess,
                         failureBlock: @escaping PerformRequestFailure) {
-        if let url = URL(string: url) {
+        if let url = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
             networkURLSession = URLSession(configuration: .default)
             dataTask = networkURLSession.dataTask(with: url) { [weak self] (data, response, error) in
             defer { self?.dataTask = nil }
