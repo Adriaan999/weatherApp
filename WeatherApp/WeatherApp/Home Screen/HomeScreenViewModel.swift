@@ -113,9 +113,56 @@ class HomeScreenViewModel {
             }
         }
     }
+    
+    func fetchWeatherInformation(cityName: String) {
+        let dispatchGroup = DispatchGroup()
+        var errorMessage: String?
+        
+        dispatchGroup.enter()
+        fetchWeatherData(cityName: cityName) { error in
+            if let error = error {
+                errorMessage = error.localizedDescription
+            }
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.enter()
+        fetchForcstWeatherData(cityName: cityName) { error in
+            if let error = error {
+                errorMessage = error.localizedDescription
+            }
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            if errorMessage != nil {
+                self.delegate?.errorHandler()
+            } else {
+                self.delegate?.didUpateWeather()
+            }
+        }
+    }
 
     private func fetchForcstWeatherData(latitude: Double, longitude: Double, completion: @escaping WeatherDataCompletion) {
         interactor.fetchForcastedWeather(latitude: latitude, longitude: longitude) { [weak self] (response) in
+            self?.forcastedWeatherData = response
+            completion(nil)
+        } failure: { (error) in
+            completion(error)
+        }
+    }
+    
+    private func fetchWeatherData(cityName: String, completion: @escaping WeatherDataCompletion) {
+        interactor.fetchWeather(cityName: cityName) { [weak self] (response) in
+            self?.weatherData = response
+            completion(nil)
+        } failure: { (error) in
+            completion(error)
+        }
+    }
+    
+    private func fetchForcstWeatherData(cityName: String, completion: @escaping WeatherDataCompletion) {
+        interactor.fetchForcastedWeather(cityName: cityName) { [weak self] (response) in
             self?.forcastedWeatherData = response
             completion(nil)
         } failure: { (error) in

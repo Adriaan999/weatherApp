@@ -15,6 +15,7 @@ class HomeScreenViewController: UIViewController {
     @IBOutlet private var conditionsLabel: UILabel!
     @IBOutlet private var backGroundImage: UIImageView!
     @IBOutlet private var weatherTableView: UITableView!
+    @IBOutlet private var searchTextField: UITextField!
     
     private lazy var locationManager = CLLocationManager()
     private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -24,6 +25,7 @@ class HomeScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startLoadindAnimation()
+        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
@@ -31,7 +33,14 @@ class HomeScreenViewController: UIViewController {
         weatherTableView.delegate = self
         weatherTableView.dataSource = self
         
+        searchTextField.delegate = self
+        
         setupTableViewCell()
+    }
+    
+    @IBAction private func searchPressed(_ sender: UIButton) {
+        searchTextField.endEditing(true)
+        startLoadindAnimation()
     }
     
     private func setupTableViewCell() {
@@ -103,7 +112,7 @@ extension HomeScreenViewController: HomeScreenViewModelDelegate {
     
     func didUpateWeather() {
         DispatchQueue.main.async {
-            self.currentTempLabel.text = self.viewModel.currentTemp
+            self.currentTempLabel.text = "\(self.viewModel.currentTemp)°"
             self.cityNameLabel.text = self.viewModel.currentCity
             self.conditionsLabel.text = self.viewModel.currentConditions
             self.backGroundImage.image = UIImage(named: self.viewModel.background().image)
@@ -129,3 +138,29 @@ extension HomeScreenViewController: HomeScreenViewModelDelegate {
         }
     }
 }
+
+extension HomeScreenViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchTextField.endEditing(true)
+        print(searchTextField.text!)
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField.text != "" {
+            return true
+        } else {
+            textField.placeholder = "Type something"
+            return false
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let city = searchTextField.text {
+            viewModel.fetchWeatherInformation(cityName: city)
+        }
+        searchTextField.text = ""
+    }
+}
+
