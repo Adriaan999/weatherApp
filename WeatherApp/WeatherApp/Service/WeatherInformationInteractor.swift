@@ -11,7 +11,7 @@ class WeatherInformationInteractor: WeatherInformationBoundary {
     
     private let networkManager = NetworkManager()
     private let weatherURL = ""
-    private let forcastedWeatherURL = "https://api.openweathermap.org/data/2.5/forecast?&appid=&=metric"
+    private let forcastedWeatherURL = ""
     
     func fetchWeather(latitude: Double,
                       longitude: Double,
@@ -57,13 +57,13 @@ class WeatherInformationInteractor: WeatherInformationBoundary {
     
     func fetchForcastedWeather(latitude: Double,
                                longitude: Double,
-                               success: @escaping FetchCurrentWeatherSuccess,
+                               success: @escaping FetchForcastedWeatherSuccess,
                                failure: @escaping FetchWeatherDataFailure) {
         
         let url = "\(forcastedWeatherURL)&lat=\(latitude)&lon=\(longitude)"
 
         networkManager.performRequest(url: url, successBlock: { (data) in
-            guard let weatherData: WeatherInformationResponseModel = try? data.decoded() else {
+            guard let weatherData: WeatherForcastInformationResponseModel = try? data.decoded() else {
                 let errorDescription = "A localized description of an error"
                 let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorDescription])
                 failure(error)
@@ -82,7 +82,7 @@ class WeatherInformationInteractor: WeatherInformationBoundary {
         let url = "\(forcastedWeatherURL)&q=\(cityName)"
 
         networkManager.performRequest(url: url, successBlock: { (data) in
-            guard let weatherData: WeatherInformationResponseModel = try? data.decoded() else {
+            guard let weatherData: WeatherForcastInformationResponseModel = try? data.decoded() else {
                 let errorDescription = "A localized description of an error"
                 let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorDescription])
                 failure(error)

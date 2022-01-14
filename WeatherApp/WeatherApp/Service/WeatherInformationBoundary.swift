@@ -9,8 +9,8 @@ import Foundation
 
 typealias FetchCurrentWeatherSuccess = (WeatherInformationResponseModel?) -> Void
 typealias FetchCityWeatherSuccess = (WeatherInformationResponseModel?) -> Void
-typealias FetchForcastedWeatherSuccess = (WeatherInformationResponseModel?) -> Void
-typealias FetchForcastedCityWeatherSuccess = (WeatherInformationResponseModel?) -> Void
+typealias FetchForcastedWeatherSuccess = (WeatherForcastInformationResponseModel?) -> Void
+typealias FetchForcastedCityWeatherSuccess = (WeatherForcastInformationResponseModel?) -> Void
 
 typealias FetchWeatherDataFailure = (Error) -> Void
 

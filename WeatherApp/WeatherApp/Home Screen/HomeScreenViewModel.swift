@@ -7,6 +7,8 @@
 
 import Foundation
 
+fileprivate typealias WeatherDataCompletion = () -> Void
+
 protocol HomeScreenViewModelDelegate {
     func didUpateWeather()
 }
@@ -15,6 +17,7 @@ class HomeScreenViewModel {
     
     private var interactor: WeatherInformationBoundary
     private var weatherData: WeatherInformationResponseModel?
+    private(set) var forcastedWeatherData: WeatherForcastInformationResponseModel?
     private var delegate: HomeScreenViewModelDelegate?
     
     init(interactor: WeatherInformationBoundary,
@@ -43,9 +46,34 @@ class HomeScreenViewModel {
         return (weatherData?.weather[0].condition ?? "").uppercased()
     }
     
+    func forcastedCondition(_ index: Int) -> String {
+        let condition = forcastedWeatherData?.weatherData[index].weather[0].condition.uppercased()
+        switch condition {
+        case "CLOUDS", "MIST", "FOG":
+            return "PartlySunny"
+        case "CLEAR":
+            return "Clear"
+        case "RAIN":
+            return "Rain"
+        default:
+            return "Clear"
+        }
+    }
+    
+    func maxForcastedTemp(_ index: Int) -> String {
+        return String(format: "%.0f", forcastedWeatherData?.weatherData[index].tempData.tempMax ?? 0.0)
+    }
+    
+    func dayOfTheWeek(_ index: Int) -> (day: String, time: String) {
+        let date = forcastedWeatherData?.weatherData[index].date
+        let day = Date.from(dateString: date ?? "", withFormat: "yyyy-MM-dd HH:mm:ss", toFormat: "EEEE") ?? ""
+        let time = Date.from(dateString: date ?? "", withFormat: "yyyy-MM-dd HH:mm:ss", toFormat: "HH:mm a") ?? ""
+        return (day, time)
+    }
+    
     func background() -> (image: String, colour: String) {
         switch currentConditions {
-        case "CLOUDS", "MIST":
+        case "CLOUDS", "MIST", "FOG":
             return ("forest_cloudy", "Cloudy")
         case "CLEAR":
             return ("forest_sunny", "Sunny")
@@ -56,22 +84,39 @@ class HomeScreenViewModel {
         }
     }
     
-    func fetchWeatherData() {
-        interactor.fetchWeather(cityName: "Cape Town") { (response) in
-            self.weatherData = response
-        } failure: { (error) in
-            print(error.localizedDescription)
+    func fetchWeatherInformation(latitude: Double, longitude: Double) {
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        fetchWeatherData(latitude: latitude, longitude: longitude) {
+            dispatchGroup.leave()
         }
         
+        dispatchGroup.enter()
+        fetchForcstWeatherData(latitude: latitude, longitude: longitude) {
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            self.delegate?.didUpateWeather()
+        }
     }
     
-    func fetchWeatherData(latitude: Double, longitude: Double) {
+    private func fetchForcstWeatherData(latitude: Double, longitude: Double, completion: @escaping WeatherDataCompletion) {
+        interactor.fetchForcastedWeather(latitude: latitude, longitude: longitude) { [weak self] (response) in
+            self?.forcastedWeatherData = response
+            completion()
+        } failure: { (error) in
+            completion()
+        }
+    }
+    
+    private func fetchWeatherData(latitude: Double, longitude: Double, completion: @escaping WeatherDataCompletion) {
         interactor.fetchWeather(latitude: latitude, longitude: longitude) { [weak self] (response) in
             self?.weatherData = response
-            self?.delegate?.didUpateWeather()
+            completion()
         } failure: { (error) in
-            print(error.localizedDescription)
+            completion()
         }
-        
     }
 }

@@ -47,12 +47,17 @@ class HomeScreenViewController: UIViewController {
 
 extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.forcastedWeatherData?.weatherData.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherTableViewCell", for: indexPath) as! WeatherTableViewCell
-        cell.backgroundColor = UIColor(named: "Cloudy")
+        let dayOfTheWeek = viewModel.dayOfTheWeek(indexPath.row)
+        cell.populate(viewModel.background().colour,
+                      dayOfTheWeek: dayOfTheWeek.day,
+                      timeOfTheDay: dayOfTheWeek.time,
+                      condition: viewModel.forcastedCondition(indexPath.row),
+                      temperature: viewModel.maxForcastedTemp(indexPath.row))
         return cell
     }
     
@@ -77,7 +82,7 @@ extension HomeScreenViewController: CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
-            viewModel.fetchWeatherData(latitude: lat, longitude: lon)
+            viewModel.fetchWeatherInformation(latitude: lat, longitude: lon)
         }
     }
     
