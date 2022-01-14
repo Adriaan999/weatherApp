@@ -58,12 +58,15 @@ extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "WeatherTableViewHeaderCell") as! WeatherTableViewHeaderCell
-        headerCell.backgroundColor = UIColor(named: "Cloudy")
+        headerCell.populate(viewModel.background().colour,
+                            minTemp: viewModel.minTemp,
+                            currentTemp: viewModel.currentTemp,
+                            maxTemp: viewModel.maxTemp)
         return headerCell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 60
     }
 }
 
@@ -90,8 +93,9 @@ extension HomeScreenViewController: HomeScreenViewModelDelegate {
             self.currentTempLabel.text = self.viewModel.currentTemp
             self.cityNameLabel.text = self.viewModel.currentCity
             self.conditionsLabel.text = self.viewModel.currentConditions
-            self.backGroundImage.image = UIImage(named: self.viewModel.backgroundImage)
-            self.weatherTableView.backgroundColor = UIColor(named: "Cloudy")
+            self.backGroundImage.image = UIImage(named: self.viewModel.background().image)
+            self.weatherTableView.backgroundColor = UIColor(named: self.viewModel.background().colour)
+            self.weatherTableView.reloadData()
         }
     }
 }

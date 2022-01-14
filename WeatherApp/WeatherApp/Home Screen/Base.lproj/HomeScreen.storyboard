@@ -23,7 +23,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vgr-T6-zMa">
-                                <rect key="frame" x="0.0" y="350" width="414" height="512"/>
+                                <rect key="frame" x="0.0" y="340" width="414" height="522"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HWU-e6-D5l">
@@ -65,7 +65,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Vgr-T6-zMa" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="1c2-gg-QHK"/>
-                            <constraint firstItem="Vgr-T6-zMa" firstAttribute="top" secondItem="2gh-Yx-JX8" secondAttribute="bottom" id="Lsv-S5-CZd"/>
+                            <constraint firstItem="Vgr-T6-zMa" firstAttribute="top" secondItem="2gh-Yx-JX8" secondAttribute="bottom" constant="-10" id="Lsv-S5-CZd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2gh-Yx-JX8" secondAttribute="trailing" id="R2b-Bg-Hcm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="leading" secondItem="2gh-Yx-JX8" secondAttribute="leading" id="SZD-gU-dWB"/>
                             <constraint firstItem="2gh-Yx-JX8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Z36-Lb-wNm"/>

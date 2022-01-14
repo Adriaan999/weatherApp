@@ -23,8 +23,16 @@ class HomeScreenViewModel {
         self.delegate = delegate
     }
     
+    var minTemp: String {
+        return String(format: "%.0f", weatherData?.main.tempMin ?? 0.0)
+    }
+    
     var currentTemp: String {
         return String(format: "%.0f", weatherData?.main.temp ?? 0.0)
+    }
+    
+    var maxTemp: String {
+        return String(format: "%.0f", weatherData?.main.tempMax ?? 0.0)
     }
     
     var currentCity: String {
@@ -35,16 +43,16 @@ class HomeScreenViewModel {
         return (weatherData?.weather[0].condition ?? "").uppercased()
     }
     
-    var backgroundImage: String {
+    func background() -> (image: String, colour: String) {
         switch currentConditions {
         case "CLOUDS", "MIST":
-            return "forest_cloudy"
+            return ("forest_cloudy", "Cloudy")
         case "CLEAR":
-            return "forest_sunny"
+            return ("forest_sunny", "Sunny")
         case "RAIN":
-            return "forest_rainy"
+            return ("forest_rainy", "Rainy")
         default:
-            return "forest_sunny"
+            return ("forest_sunny", "Sunny")
         }
     }
     
