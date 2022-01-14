@@ -12,7 +12,7 @@ typealias FetchCityWeatherSuccess = (WeatherInformationResponseModel?) -> Void
 typealias FetchForcastedWeatherSuccess = (WeatherForcastInformationResponseModel?) -> Void
 typealias FetchForcastedCityWeatherSuccess = (WeatherForcastInformationResponseModel?) -> Void
 
-typealias FetchWeatherDataFailure = (Error) -> Void
+typealias FetchWeatherDataFailure = (NetworkError) -> Void
 
 protocol WeatherInformationBoundary {
     

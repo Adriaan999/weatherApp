@@ -19,17 +19,15 @@ class WeatherInformationInteractor: WeatherInformationBoundary {
                       failure: @escaping FetchWeatherDataFailure) {
         
         let url = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
-
+        
         networkManager.performRequest(url: url, successBlock: { (data) in
             guard let weatherData: WeatherInformationResponseModel = try? data.decoded() else {
-                let errorDescription = "A localized description of an error"
-                let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorDescription])
-                failure(error)
+                failure(.responseModelParsingError)
                 return
             }
             success(weatherData)
         }, failureBlock: { (error) in
-            failure(error)
+            failure(.failedRequestError)
             return
         })
     }
@@ -39,17 +37,15 @@ class WeatherInformationInteractor: WeatherInformationBoundary {
                       failure: @escaping FetchWeatherDataFailure) {
         
         let url = "\(weatherURL)&q=\(cityName)"
-
+        
         networkManager.performRequest(url: url, successBlock: { (data) in
             guard let weatherData: WeatherInformationResponseModel = try? data.decoded() else {
-                let errorDescription = "A localized description of an error"
-                let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorDescription])
-                failure(error)
+                failure(.responseModelParsingError)
                 return
             }
             success(weatherData)
         }, failureBlock: { (error) in
-            failure(error)
+            failure(.failedRequestError)
             return
         })
         
@@ -61,17 +57,15 @@ class WeatherInformationInteractor: WeatherInformationBoundary {
                                failure: @escaping FetchWeatherDataFailure) {
         
         let url = "\(forcastedWeatherURL)&lat=\(latitude)&lon=\(longitude)"
-
+        
         networkManager.performRequest(url: url, successBlock: { (data) in
             guard let weatherData: WeatherForcastInformationResponseModel = try? data.decoded() else {
-                let errorDescription = "A localized description of an error"
-                let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorDescription])
-                failure(error)
+                failure(.responseModelParsingError)
                 return
             }
             success(weatherData)
         }, failureBlock: { (error) in
-            failure(error)
+            failure(.failedRequestError)
             return
         })
     }
@@ -80,26 +74,17 @@ class WeatherInformationInteractor: WeatherInformationBoundary {
                                success: @escaping FetchForcastedCityWeatherSuccess,
                                failure: @escaping FetchWeatherDataFailure) {
         let url = "\(forcastedWeatherURL)&q=\(cityName)"
-
+        
         networkManager.performRequest(url: url, successBlock: { (data) in
             guard let weatherData: WeatherForcastInformationResponseModel = try? data.decoded() else {
-                let errorDescription = "A localized description of an error"
-                let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorDescription])
-                failure(error)
+                failure(.responseModelParsingError)
                 return
             }
             success(weatherData)
         }, failureBlock: { (error) in
-            failure(error)
+            failure(.failedRequestError)
             return
         })
         
     }
-    
-    
 }
-//enum ValidationError: Error {
-//    case parsing
-//    case decode
-//    case etc
-//}

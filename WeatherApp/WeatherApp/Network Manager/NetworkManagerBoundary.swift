@@ -8,7 +8,7 @@
 import Foundation
 
 typealias PerformRequestSuccess = (Data) -> Void
-typealias PerformRequestFailure = (Error) -> Void
+typealias PerformRequestFailure = (NetworkError) -> Void
 
 protocol NetworkManagerBoundary {
     func performRequest(url: String,
