@@ -52,6 +52,7 @@ class HomeScreenViewController: UIViewController {
 }
 
 extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.forcastedWeatherData?.weatherData.count ?? 1
     }
@@ -83,6 +84,7 @@ extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 extension HomeScreenViewController: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             locationManager.stopUpdatingLocation()
@@ -98,6 +100,7 @@ extension HomeScreenViewController: CLLocationManagerDelegate {
 }
 
 extension HomeScreenViewController: HomeScreenViewModelDelegate {
+    
     func didUpateWeather() {
         DispatchQueue.main.async {
             self.currentTempLabel.text = self.viewModel.currentTemp

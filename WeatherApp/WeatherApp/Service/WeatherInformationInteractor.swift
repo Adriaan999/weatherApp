@@ -85,6 +85,5 @@ class WeatherInformationInteractor: WeatherInformationBoundary {
             failure(.failedRequestError)
             return
         })
-        
     }
 }
