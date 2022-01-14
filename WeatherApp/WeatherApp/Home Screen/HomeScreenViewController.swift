@@ -49,7 +49,6 @@ class HomeScreenViewController: UIViewController {
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
     }
-    
 }
 
 extension HomeScreenViewController: UITableViewDelegate, UITableViewDataSource {
@@ -99,7 +98,6 @@ extension HomeScreenViewController: CLLocationManagerDelegate {
 }
 
 extension HomeScreenViewController: HomeScreenViewModelDelegate {
-    
     func didUpateWeather() {
         DispatchQueue.main.async {
             self.currentTempLabel.text = self.viewModel.currentTemp
@@ -109,6 +107,22 @@ extension HomeScreenViewController: HomeScreenViewModelDelegate {
             self.weatherTableView.backgroundColor = UIColor(named: self.viewModel.background().colour)
             self.weatherTableView.reloadData()
             self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    func errorHandler() {
+        self.activityIndicator.stopAnimating()
+        let title = "Error with request"
+        let message = "Your request could not be processed at this time."
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        DispatchQueue.main.async {
+            alert.view.accessibilityIdentifier = "errorAlertDialog"
+            self.present(alert, animated: true, completion: nil)
+           
         }
     }
 }

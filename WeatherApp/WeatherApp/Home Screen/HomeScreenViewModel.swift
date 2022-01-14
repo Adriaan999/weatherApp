@@ -7,10 +7,11 @@
 
 import Foundation
 
-fileprivate typealias WeatherDataCompletion = () -> Void
+fileprivate typealias WeatherDataCompletion = (Error?) -> Void
 
 protocol HomeScreenViewModelDelegate {
     func didUpateWeather()
+    func errorHandler()
 }
 
 class HomeScreenViewModel {
@@ -86,37 +87,48 @@ class HomeScreenViewModel {
     
     func fetchWeatherInformation(latitude: Double, longitude: Double) {
         let dispatchGroup = DispatchGroup()
+        var errorMessage: String?
         
         dispatchGroup.enter()
-        fetchWeatherData(latitude: latitude, longitude: longitude) {
+        fetchWeatherData(latitude: latitude, longitude: longitude) { error in
+            if let error = error {
+                errorMessage = error.localizedDescription
+            }
             dispatchGroup.leave()
         }
         
         dispatchGroup.enter()
-        fetchForcstWeatherData(latitude: latitude, longitude: longitude) {
+        fetchForcstWeatherData(latitude: latitude, longitude: longitude) { error in
+            if let error = error {
+                errorMessage = error.localizedDescription
+            }
             dispatchGroup.leave()
         }
         
         dispatchGroup.notify(queue: .main) {
-            self.delegate?.didUpateWeather()
+            if errorMessage != nil {
+                self.delegate?.errorHandler()
+            } else {
+                self.delegate?.didUpateWeather()
+            }
         }
     }
-    
+
     private func fetchForcstWeatherData(latitude: Double, longitude: Double, completion: @escaping WeatherDataCompletion) {
         interactor.fetchForcastedWeather(latitude: latitude, longitude: longitude) { [weak self] (response) in
             self?.forcastedWeatherData = response
-            completion()
+            completion(nil)
         } failure: { (error) in
-            completion()
+            completion(error)
         }
     }
     
     private func fetchWeatherData(latitude: Double, longitude: Double, completion: @escaping WeatherDataCompletion) {
         interactor.fetchWeather(latitude: latitude, longitude: longitude) { [weak self] (response) in
             self?.weatherData = response
-            completion()
+            completion(nil)
         } failure: { (error) in
-            completion()
+            completion(error)
         }
     }
 }
