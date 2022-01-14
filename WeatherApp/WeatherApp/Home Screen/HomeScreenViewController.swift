@@ -9,22 +9,21 @@ import UIKit
 import CoreLocation
 
 class HomeScreenViewController: UIViewController {
- 
+    
     @IBOutlet private var currentTempLabel: UILabel!
     @IBOutlet private var cityNameLabel: UILabel!
     @IBOutlet private var conditionsLabel: UILabel!
     @IBOutlet private var backGroundImage: UIImageView!
     @IBOutlet private var weatherTableView: UITableView!
     
-    let locationManager = CLLocationManager()
-    
+    private lazy var locationManager = CLLocationManager()
+    private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     private lazy var viewModel = HomeScreenViewModel(interactor: WeatherInformationInteractor(),
                                                      delegate: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
+        startLoadindAnimation()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
@@ -37,10 +36,18 @@ class HomeScreenViewController: UIViewController {
     
     private func setupTableViewCell() {
         self.weatherTableView.register(UINib(nibName: "WeatherTableViewCell", bundle: Bundle.main),
-                                forCellReuseIdentifier: "WeatherTableViewCell")
+                                       forCellReuseIdentifier: "WeatherTableViewCell")
         
         self.weatherTableView.register(UINib(nibName: "WeatherTableViewHeaderCell", bundle: Bundle.main),
-                                forCellReuseIdentifier: "WeatherTableViewHeaderCell")
+                                       forCellReuseIdentifier: "WeatherTableViewHeaderCell")
+    }
+    
+    private func startLoadindAnimation() {
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
     }
     
 }
@@ -101,6 +108,7 @@ extension HomeScreenViewController: HomeScreenViewModelDelegate {
             self.backGroundImage.image = UIImage(named: self.viewModel.background().image)
             self.weatherTableView.backgroundColor = UIColor(named: self.viewModel.background().colour)
             self.weatherTableView.reloadData()
+            self.activityIndicator.stopAnimating()
         }
     }
 }
