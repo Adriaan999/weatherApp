@@ -18,8 +18,8 @@ class HomeScreenViewModel {
     
     private var interactor: WeatherInformationBoundary
     private var weatherData: WeatherInformationResponseModel?
-    private(set) var forcastedWeatherData: WeatherForcastInformationResponseModel?
     private var delegate: HomeScreenViewModelDelegate?
+    private(set) var forcastedWeatherData: WeatherForcastInformationResponseModel?
     
     init(interactor: WeatherInformationBoundary,
          delegate: HomeScreenViewModelDelegate) {

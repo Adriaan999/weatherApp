@@ -28,6 +28,9 @@
 		63CA628827903C590039000D /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA628727903C590039000D /* HomeScreenViewModel.swift */; };
 		63D6AFB027915A42004260FB /* WeatherForcastInformationResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D6AFAF27915A42004260FB /* WeatherForcastInformationResponseModel.swift */; };
 		63D6AFB527916DE4004260FB /* Date+StringDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D6AFB427916DE4004260FB /* Date+StringDate.swift */; };
+		63D6AFCD279198D4004260FB /* FavouriteLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D6AFCC279198D4004260FB /* FavouriteLocationsViewController.swift */; };
+		63D6AFD5279198E5004260FB /* FavouriteLocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D6AFD4279198E5004260FB /* FavouriteLocationsViewModel.swift */; };
+		63D6AFE42791A442004260FB /* FavouriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D6AFE32791A442004260FB /* FavouriteTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		63CA628727903C590039000D /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		63D6AFAF27915A42004260FB /* WeatherForcastInformationResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForcastInformationResponseModel.swift; sourceTree = "<group>"; };
 		63D6AFB427916DE4004260FB /* Date+StringDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StringDate.swift"; sourceTree = "<group>"; };
+		63D6AFCC279198D4004260FB /* FavouriteLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteLocationsViewController.swift; sourceTree = "<group>"; };
+		63D6AFD4279198E5004260FB /* FavouriteLocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteLocationsViewModel.swift; sourceTree = "<group>"; };
+		63D6AFE32791A442004260FB /* FavouriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +165,7 @@
 		63CA620C27901A720039000D /* Home Screen */ = {
 			isa = PBXGroup;
 			children = (
+				63D6AFC82791989F004260FB /* Favourite */,
 				63CA6233279023F20039000D /* Weather Cells */,
 				63CA61DC279014C70039000D /* HomeScreen.storyboard */,
 				63CA622727901BED0039000D /* HomeScreenViewController.swift */,
@@ -221,6 +228,24 @@
 				63D6AFAF27915A42004260FB /* WeatherForcastInformationResponseModel.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		63D6AFC82791989F004260FB /* Favourite */ = {
+			isa = PBXGroup;
+			children = (
+				63D6AFE22791A439004260FB /* Cells */,
+				63D6AFCC279198D4004260FB /* FavouriteLocationsViewController.swift */,
+				63D6AFD4279198E5004260FB /* FavouriteLocationsViewModel.swift */,
+			);
+			path = Favourite;
+			sourceTree = "<group>";
+		};
+		63D6AFE22791A439004260FB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				63D6AFE32791A442004260FB /* FavouriteTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,15 +380,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				63CA626D279034CD0039000D /* NetworkManagerBoundary.swift in Sources */,
+				63D6AFE42791A442004260FB /* FavouriteTableViewCell.swift in Sources */,
 				63D6AFB027915A42004260FB /* WeatherForcastInformationResponseModel.swift in Sources */,
 				63CA62352790240E0039000D /* WeatherTableViewCell.swift in Sources */,
 				63CA61E1279014C70039000D /* WeatherApp.xcdatamodeld in Sources */,
 				63CA62452790284E0039000D /* WeatherTableViewHeaderCell.swift in Sources */,
 				63CA627B2790358C0039000D /* WeatherInformationBoundary.swift in Sources */,
 				63CA622827901BED0039000D /* HomeScreenViewController.swift in Sources */,
+				63D6AFCD279198D4004260FB /* FavouriteLocationsViewController.swift in Sources */,
 				63CA6265279034B80039000D /* NetworkManager.swift in Sources */,
 				63CA61D7279014C70039000D /* AppDelegate.swift in Sources */,
 				63CA625C279034580039000D /* Data+Decoding.swift in Sources */,
+				63D6AFD5279198E5004260FB /* FavouriteLocationsViewModel.swift in Sources */,
 				63CA628827903C590039000D /* HomeScreenViewModel.swift in Sources */,
 				63CA62732790356D0039000D /* WeatherInformationInteractor.swift in Sources */,
 				63D6AFB527916DE4004260FB /* Date+StringDate.swift in Sources */,

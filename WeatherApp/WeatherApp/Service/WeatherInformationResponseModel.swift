@@ -27,8 +27,10 @@ struct Main: Decodable {
 
 struct Weather: Decodable {
     let condition: String
+    let id: Int
     
     enum CodingKeys: String, CodingKey {
         case condition = "main"
+        case id
     }
 }
