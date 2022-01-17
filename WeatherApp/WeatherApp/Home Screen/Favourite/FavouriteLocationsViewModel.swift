@@ -10,8 +10,9 @@ import Foundation
 import CoreData
 
 protocol CoreDataManagerDelegate {
-    func didUpdateData()
-    func didfetchData(ID: Int, cityName: String)
+    func didLoadWeatherData()
+    func didUpdateWeatherData()
+    func didfetchWeatherData()
     func errorHandler(message: String)
 }
 
@@ -20,7 +21,7 @@ class FavouriteLocationsViewModel {
     private var delegate: CoreDataManagerDelegate
     private var context: NSManagedObjectContext
     private var interactor: WeatherInformationBoundary
-    private var weatherData: WeatherInformationResponseModel?
+    private(set) var weatherData: WeatherInformationResponseModel?
     private(set) var dataList = [Favourite]()
 
     init(delegate: CoreDataManagerDelegate,
@@ -46,7 +47,7 @@ class FavouriteLocationsViewModel {
         do {
             try context.save()
             loadData()
-            delegate.didUpdateData()
+            delegate.didUpdateWeatherData()
         } catch {
             delegate.errorHandler(message: "Error saving location: \(error)")
         }
@@ -68,7 +69,7 @@ class FavouriteLocationsViewModel {
                     delegate.errorHandler(message: "Error deleting location: \(error)")
                 }
             }
-            delegate.didUpdateData()
+            delegate.didUpdateWeatherData()
         } catch {
             delegate.errorHandler(message: "Error deleting location: \(error)")
         }
@@ -78,17 +79,22 @@ class FavouriteLocationsViewModel {
         let request : NSFetchRequest<Favourite> = Favourite.fetchRequest()
         do {
             dataList = try context.fetch(request)
-            delegate.didUpdateData()
+            delegate.didLoadWeatherData()
         } catch {
             delegate.errorHandler(message: "Error loading locations: \(error)")
         }
     }
     
-    func fetchWeatherData(cityName: String) {
+    func fetchWeatherData(cityName: String, shouldSave: Bool) {
         interactor.fetchWeather(cityName: cityName) { [weak self] (response) in
             if let id = response?.weather[0].id,
                let name = response?.name {
-                self?.delegate.didfetchData(ID: id, cityName: name)
+                if shouldSave {
+                    self?.saveData(id, cityName: name)
+                } else {
+                    self?.weatherData = response
+                    self?.delegate.didfetchWeatherData()
+                }
             } else {
                 self?.delegate.errorHandler(message: "We regret to inform you that we don't have weather data for this city")
             }

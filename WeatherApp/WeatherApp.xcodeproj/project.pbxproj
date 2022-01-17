@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63988B74279567E100D840B0 /* FavouriteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63988B73279567E100D840B0 /* FavouriteDetailsViewController.swift */; };
 		63CA61D7279014C70039000D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA61D6279014C70039000D /* AppDelegate.swift */; };
 		63CA61D9279014C70039000D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA61D8279014C70039000D /* SceneDelegate.swift */; };
 		63CA61DE279014C70039000D /* HomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63CA61DC279014C70039000D /* HomeScreen.storyboard */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		63988B73279567E100D840B0 /* FavouriteDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteDetailsViewController.swift; sourceTree = "<group>"; };
 		63CA61D3279014C70039000D /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63CA61D6279014C70039000D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63CA61D8279014C70039000D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63988B72279567C700D840B0 /* Favourite Details */ = {
+			isa = PBXGroup;
+			children = (
+				63988B73279567E100D840B0 /* FavouriteDetailsViewController.swift */,
+			);
+			path = "Favourite Details";
+			sourceTree = "<group>";
+		};
 		63CA61CA279014C70039000D = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +243,7 @@
 		63D6AFC82791989F004260FB /* Favourite */ = {
 			isa = PBXGroup;
 			children = (
+				63988B72279567C700D840B0 /* Favourite Details */,
 				63D6AFE22791A439004260FB /* Cells */,
 				63D6AFCC279198D4004260FB /* FavouriteLocationsViewController.swift */,
 				63D6AFD4279198E5004260FB /* FavouriteLocationsViewModel.swift */,
@@ -383,6 +394,7 @@
 				63D6AFE42791A442004260FB /* FavouriteTableViewCell.swift in Sources */,
 				63D6AFB027915A42004260FB /* WeatherForcastInformationResponseModel.swift in Sources */,
 				63CA62352790240E0039000D /* WeatherTableViewCell.swift in Sources */,
+				63988B74279567E100D840B0 /* FavouriteDetailsViewController.swift in Sources */,
 				63CA61E1279014C70039000D /* WeatherApp.xcdatamodeld in Sources */,
 				63CA62452790284E0039000D /* WeatherTableViewHeaderCell.swift in Sources */,
 				63CA627B2790358C0039000D /* WeatherInformationBoundary.swift in Sources */,

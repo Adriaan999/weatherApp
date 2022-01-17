@@ -131,7 +131,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoFavouritesTableViewCell" textLabel="uwa-FC-Kab" style="IBUITableViewCellStyleDefault" id="kwS-T7-kp2">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoFavouritesTableViewCell" textLabel="uwa-FC-Kab" style="IBUITableViewCellStyleDefault" id="kwS-T7-kp2">
                                 <rect key="frame" x="0.0" y="71.666667938232422" width="414" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kwS-T7-kp2" id="fM5-S5-iHP">
@@ -162,7 +162,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="bEY-yp-Gt8" kind="presentation" id="g2w-s3-90l"/>
+                        <segue destination="bEY-yp-Gt8" kind="presentation" identifier="WeatherDetailsSegue" id="g2w-s3-90l"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PJe-mG-TWv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -175,15 +175,15 @@
             </objects>
             <point key="canvasLocation" x="2010" y="139"/>
         </scene>
-        <!--View Controller-->
+        <!--Favourite Details View Controller-->
         <scene sceneID="0HE-q5-6Qr">
             <objects>
-                <viewController id="bEY-yp-Gt8" sceneMemberID="viewController">
+                <viewController id="bEY-yp-Gt8" customClass="FavouriteDetailsViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bse-gf-ZCX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="8zu-Uw-mZx"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.1646876931" green="0.1647174954" blue="0.1646811664" alpha="0.8987264064763556" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHJ-K0-rA5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
