@@ -12,7 +12,7 @@ import CoreData
 protocol CoreDataManagerDelegate {
     func didUpdateData()
     func didfetchData(ID: Int, cityName: String)
-    func errorHandler()
+    func errorHandler(message: String)
 }
 
 class FavouriteLocationsViewModel {
@@ -32,20 +32,29 @@ class FavouriteLocationsViewModel {
     }
 
     func saveData(_ ID: Int, cityName: String) {
+        loadData()
+        for savedData in dataList {
+            if savedData.id == ID {
+                delegate.errorHandler(message: "This locations is already in your favourites list")
+                return
+            }
+        }
+        
         let newItem = Favourite(context: self.context)
         newItem.id = Int16(ID)
         newItem.name = cityName
         do {
             try context.save()
+            loadData()
             delegate.didUpdateData()
         } catch {
-            print("Error saving item \(error)")
+            delegate.errorHandler(message: "Error saving location: \(error)")
         }
     }
     
-    func deleteData(with ID: String, type: String) {
+    func deleteData(_ ID: Int) {
         let request : NSFetchRequest<Favourite> = Favourite.fetchRequest()
-        let predicate = NSPredicate(format: "id = %@", ID, type)
+        let predicate = NSPredicate(format: "id = %d", ID)
         request.predicate = predicate
 
         do {
@@ -54,13 +63,14 @@ class FavouriteLocationsViewModel {
                 context.delete(objectToDelete)
                 do {
                     try context.save()
+                    loadData()
                 } catch {
-                    print("Error saving item \(error)")
+                    delegate.errorHandler(message: "Error deleting location: \(error)")
                 }
             }
             delegate.didUpdateData()
         } catch {
-            print("Error deleting item \(error)")
+            delegate.errorHandler(message: "Error deleting location: \(error)")
         }
     }
 
@@ -70,7 +80,7 @@ class FavouriteLocationsViewModel {
             dataList = try context.fetch(request)
             delegate.didUpdateData()
         } catch {
-            print("Error loading fact \(error)")
+            delegate.errorHandler(message: "Error loading locations: \(error)")
         }
     }
     
@@ -80,10 +90,10 @@ class FavouriteLocationsViewModel {
                let name = response?.name {
                 self?.delegate.didfetchData(ID: id, cityName: name)
             } else {
-                self?.delegate.errorHandler()
+                self?.delegate.errorHandler(message: "We regret to inform you that we don't have weather data for this city")
             }
         } failure: { [weak self] (error) in
-            self?.delegate.errorHandler()
+            self?.delegate.errorHandler(message: "Error fetching weather data: \(error)" )
         }
     }
 }

@@ -134,7 +134,6 @@ extension HomeScreenViewController: HomeScreenViewModelDelegate {
         DispatchQueue.main.async {
             alert.view.accessibilityIdentifier = "errorAlertDialog"
             self.present(alert, animated: true, completion: nil)
-           
         }
     }
 }

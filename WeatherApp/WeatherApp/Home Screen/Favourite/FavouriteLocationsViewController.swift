@@ -22,13 +22,29 @@ class FavouriteLocationsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.dataList.count
+        return max(viewModel.dataList.count, 1)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteTableViewCell", for: indexPath) as! FavouriteTableViewCell
-        cell.textLabel?.text = viewModel.dataList[indexPath.row].name
+        
+        let cell: UITableViewCell
+        
+        if viewModel.dataList.count == 0 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "NoFavouritesTableViewCell", for: indexPath)
+            cell.textLabel?.text = "Start adding favourites" 
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteTableViewCell", for: indexPath) as! FavouriteTableViewCell
+            cell.textLabel?.text = viewModel.dataList[indexPath.row].name
+        }
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let id = viewModel.dataList[indexPath.row].id
+            viewModel.deleteData(Int(id))
+        }
     }
     
     @IBAction private func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -56,9 +72,20 @@ class FavouriteLocationsViewController: UITableViewController {
 
 
 extension FavouriteLocationsViewController: CoreDataManagerDelegate {
-    
-    func errorHandler() {
+    func errorHandler(message: String) {
+        self.activityIndicator.stopAnimating()
+        let title = "Error with request"
+        let message = message
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         
+        DispatchQueue.main.async {
+            alert.view.accessibilityIdentifier = "errorAlertDialog"
+            self.present(alert, animated: true, completion: nil)
+           
+        }
     }
     
     func didfetchData(ID: Int, cityName: String) {
@@ -68,9 +95,6 @@ extension FavouriteLocationsViewController: CoreDataManagerDelegate {
     func didUpdateData() {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
-//            if self.viewModel.dataList.isEmpty {
-//
-//            }
             self.tableView.reloadData()
        }
     }
