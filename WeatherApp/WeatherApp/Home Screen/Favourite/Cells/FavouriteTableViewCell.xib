@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavouriteTableViewCell" rowHeight="71" id="13o-XT-gfQ" customClass="FavouriteTableViewCell" customModule="WeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="350" height="71"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="13o-XT-gfQ" id="Jy3-LD-33Q">
+                <rect key="frame" x="0.0" y="0.0" width="350" height="71"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="topRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weather_background" translatesAutoresizingMaskIntoConstraints="NO" id="2YI-2P-NHu">
+                        <rect key="frame" x="-243" y="0.0" width="836" height="71"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="71" id="AYU-SM-FZf"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7z-ca-KpD">
+                        <rect key="frame" x="10" y="21" width="44" height="29"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="2YI-2P-NHu" firstAttribute="centerY" secondItem="Jy3-LD-33Q" secondAttribute="centerY" id="6b6-jj-LwH"/>
+                    <constraint firstItem="2YI-2P-NHu" firstAttribute="centerX" secondItem="Jy3-LD-33Q" secondAttribute="centerX" id="XdW-TX-iAq"/>
+                    <constraint firstItem="S7z-ca-KpD" firstAttribute="top" secondItem="Jy3-LD-33Q" secondAttribute="topMargin" constant="10" id="hod-dK-BFY"/>
+                    <constraint firstItem="S7z-ca-KpD" firstAttribute="leading" secondItem="Jy3-LD-33Q" secondAttribute="leading" constant="10" id="hy9-rA-2U8"/>
+                    <constraint firstItem="S7z-ca-KpD" firstAttribute="centerY" secondItem="Jy3-LD-33Q" secondAttribute="centerY" id="x69-Vw-9MR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cityNameLabel" destination="S7z-ca-KpD" id="TU7-GP-708"/>
+            </connections>
+            <point key="canvasLocation" x="146.37681159420291" y="148.32589285714286"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="weather_background" width="836" height="661"/>
+    </resources>
+</document>

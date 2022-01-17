@@ -18,6 +18,7 @@ class FavouriteLocationsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startLoadindAnimation()
+        setupTableViewCell()
         viewModel.loadData()
     }
     
@@ -32,16 +33,15 @@ class FavouriteLocationsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell
-        
         if viewModel.dataList.count == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "NoFavouritesTableViewCell", for: indexPath)
-            cell.textLabel?.text = "Start adding favourites" 
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NoFavouritesTableViewCell", for: indexPath)
+            cell.textLabel?.text = "Start adding favourites"
+            return cell
         } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteTableViewCell", for: indexPath) as! FavouriteTableViewCell
-            cell.textLabel?.text = viewModel.dataList[indexPath.row].name
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteTableViewCell", for: indexPath) as! FavouriteTableViewCell
+            cell.populate(cityName: viewModel.dataList[indexPath.row].name ?? "")
+            return cell
         }
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -79,6 +79,11 @@ class FavouriteLocationsViewController: UITableViewController {
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
     }
+    
+    private func setupTableViewCell() {
+        self.tableView.register(UINib(nibName: "FavouriteTableViewCell", bundle: Bundle.main),
+                                       forCellReuseIdentifier: "FavouriteTableViewCell")
+    }
 }
 
 
@@ -105,7 +110,6 @@ extension FavouriteLocationsViewController: CoreDataManagerDelegate {
     }
     
     func errorHandler(message: String) {
-        self.activityIndicator.stopAnimating()
         let title = "Error with request"
         let message = message
         let alert = UIAlertController(title: title,
@@ -114,6 +118,7 @@ extension FavouriteLocationsViewController: CoreDataManagerDelegate {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         
         DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
             alert.view.accessibilityIdentifier = "errorAlertDialog"
             self.present(alert, animated: true, completion: nil)
         }

@@ -42,7 +42,7 @@ class FavouriteLocationsViewModel {
         }
         
         let newItem = Favourite(context: self.context)
-        newItem.id = Int16(ID)
+        newItem.id = Int32(ID)
         newItem.name = cityName
         do {
             try context.save()
@@ -87,7 +87,7 @@ class FavouriteLocationsViewModel {
     
     func fetchWeatherData(cityName: String, shouldSave: Bool) {
         interactor.fetchWeather(cityName: cityName) { [weak self] (response) in
-            if let id = response?.weather[0].id,
+            if let id = response?.id,
                let name = response?.name {
                 if shouldSave {
                     self?.saveData(id, cityName: name)

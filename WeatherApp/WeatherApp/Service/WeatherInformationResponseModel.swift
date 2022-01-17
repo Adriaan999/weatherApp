@@ -9,6 +9,7 @@ import Foundation
 
 struct WeatherInformationResponseModel: Decodable {
     let name: String
+    let id: Int
     let main: Main
     let weather: [Weather]
 }
@@ -27,10 +28,10 @@ struct Main: Decodable {
 
 struct Weather: Decodable {
     let condition: String
-    let id: Int
+    let conditionCode: Int
     
     enum CodingKeys: String, CodingKey {
         case condition = "main"
-        case id
+        case conditionCode = "id"
     }
 }

@@ -7,6 +7,11 @@
 
 import UIKit
 
-
 class FavouriteTableViewCell: UITableViewCell {
+    
+    @IBOutlet var cityNameLabel: UILabel!
+    
+    func populate(cityName: String) {
+        self.cityNameLabel.text = cityName
+    }
 }
