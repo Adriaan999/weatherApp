@@ -10,8 +10,9 @@ import Foundation
 class WeatherInformationInteractor: WeatherInformationBoundary {
     
     private let networkManager = NetworkManager()
-    private let weatherURL = ""
-    private let forcastedWeatherURL = ""
+    var shouldMockRequest: Bool = false
+    private let weatherURL = "https://api.openweathermap.org/data/2.5/weather?&appid=5126ff11ddd47ab263da56e483716e5a&units=metric"
+    private let forcastedWeatherURL = "https://api.openweathermap.org/data/2.5/forecast?&appid=5126ff11ddd47ab263da56e483716e5a&units=metric"
     
     func fetchWeather(latitude: Double,
                       longitude: Double,

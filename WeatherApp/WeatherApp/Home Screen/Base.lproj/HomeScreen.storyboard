@@ -96,7 +96,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="6Te-BQ-QNB">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="heart.fill" catalog="system" id="Sdc-RO-Bcr">
-                            <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
                                 <segue destination="3kJ-v5-amh" kind="show" id="JBI-FY-4y3"/>
                             </connections>
@@ -115,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="138.61607142857142"/>
         </scene>
-        <!--Favourite Locations View Controller-->
+        <!--Favourites-->
         <scene sceneID="vuT-WW-UZG">
             <objects>
                 <tableViewController id="3kJ-v5-amh" customClass="FavouriteLocationsViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -147,7 +146,7 @@
                             <outlet property="delegate" destination="3kJ-v5-amh" id="K7w-RZ-YHm"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="lbw-x7-sng">
+                    <navigationItem key="navigationItem" title="Favourites" id="lbw-x7-sng">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="dOq-b8-N7U">
                             <connections>
                                 <action selector="addButtonPressed:" destination="3kJ-v5-amh" id="wlD-uA-Xih"/>
@@ -180,33 +179,34 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YMU-Wt-qHd">
-                                <rect key="frame" x="91.333333333333343" y="150" width="312.66666666666663" height="253"/>
+                                <rect key="frame" x="167" y="150" width="237" height="253"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TvN-Za-GGo">
-                                        <rect key="frame" x="0.0" y="0.0" width="312.66666666666669" height="71"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="237" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfV-fW-aN4">
-                                                <rect key="frame" x="0.0" y="0.0" width="75.666666666666671" height="71"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="137" height="100"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="60"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y5Z-cd-oct">
-                                                <rect key="frame" x="75.666666666666686" y="0.0" width="237" height="71"/>
+                                                <rect key="frame" x="137" y="0.0" width="100" height="100"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="VY2-j5-7O5"/>
+                                                    <constraint firstAttribute="height" constant="100" id="s6h-fK-GRd"/>
+                                                </constraints>
                                             </imageView>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cape Town" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebl-Hq-h5Q">
-                                        <rect key="frame" x="0.0" y="71" width="312.66666666666669" height="182"/>
+                                        <rect key="frame" x="0.0" y="100" width="237" height="153"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="ebl-Hq-h5Q" firstAttribute="top" secondItem="YMU-Wt-qHd" secondAttribute="top" constant="71" id="XlC-u4-RQr"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8zu-Uw-mZx"/>
@@ -257,9 +257,6 @@
         <image name="weather_background" width="836" height="661"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

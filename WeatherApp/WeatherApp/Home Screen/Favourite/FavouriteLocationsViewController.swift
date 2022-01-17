@@ -110,14 +110,13 @@ extension FavouriteLocationsViewController: CoreDataManagerDelegate {
     }
     
     func errorHandler(message: String) {
-        let title = "Error with request"
-        let message = message
-        let alert = UIAlertController(title: title,
-                                      message: message,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        
         DispatchQueue.main.async {
+            let title = "Error with request"
+            let message = message
+            let alert = UIAlertController(title: title,
+                                          message: message,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.activityIndicator.stopAnimating()
             alert.view.accessibilityIdentifier = "errorAlertDialog"
             self.present(alert, animated: true, completion: nil)
